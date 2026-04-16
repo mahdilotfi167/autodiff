@@ -59,10 +59,18 @@ $$df = f'(x) \, dx$$
 For a function of a matrix $L(\mathbf{X})$ where $L$ is scalar:
 $$dL = \sum_{ij} \frac{\partial L}{\partial X_{ij}} dX_{ij}$$
 
+**What this means:**
+- $dL$ = a tiny change in $L$ (the loss)
+- $\frac{\partial L}{\partial X_{ij}}$ = how much $L$ changes per unit change in element $X_{ij}$ (the sensitivity)
+- $dX_{ij}$ = a tiny perturbation to element $X_{ij}$
+- **The equation says**: The total change in $L$ equals the sum over all matrix elements of: (sensitivity to that element) × (perturbation of that element)
+
+**Example:** For $L = \text{tr}(\mathbf{X})$, only diagonal elements matter: $\frac{\partial L}{\partial X_{ii}} = 1$ and $\frac{\partial L}{\partial X_{ij}} = 0$ for $i \neq j$. So $dL = dX_{11} + dX_{22} + dX_{33}$ (perturb only the diagonals).
+
 Using the trace inner product identity:
 $$dL = \text{tr}\left(\frac{\partial L}{\partial \mathbf{X}}^T d\mathbf{X}\right)$$
 
-**This is the key equation.** If we can manipulate $dL$ into the form $\text{tr}(\mathbf{G}^T \, d\mathbf{X})$, then $\mathbf{G} = \frac{\partial L}{\partial \mathbf{X}}$ is the gradient.
+**This is the key equation.** If we can manipulate $dL$ into the form $\text{tr}(\mathbf{G}^T \, d\mathbf{X})$, then $\mathbf{G} = \frac{\partial L}{\partial \mathbf{X}}$ is the gradient. The trace form is elegant because instead of summing element-by-element (tedious!), we work with entire matrices at once.
 
 ### Differential rules
 
